@@ -41,17 +41,7 @@ public class ProducerDemo {
                 new ProducerRecord<>("first_topic", "Hello, Kafka from Java!");
 
         // Send data asynchronously
-        producer.send(producerRecord, (metadata, exception) -> {
-            if (exception == null) {
-                log.info("Record sent successfully! \n" +
-                        "Topic: " + metadata.topic() + "\n" +
-                        "Partition: " + metadata.partition() + "\n" +
-                        "Offset: " + metadata.offset() + "\n" +
-                        "Timestamp: " + metadata.timestamp());
-            } else {
-                log.error("Error while producing", exception);
-            }
-        });
+        producer.send(producerRecord);
 
         // Flush and close the producer
         producer.flush();
